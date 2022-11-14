@@ -106,14 +106,15 @@ const init = () => {
 
             const name = domoForm.querySelector('#domoName').value;
             const age = domoForm.querySelector('#domoAge').value;
+            const characteristic = domoForm.querySelector('#domoChar').value;
             const _csrf = domoForm.querySelector('#_csrf').value;
 
-            if (!name || !age) {
+            if (!name || !age || !characteristic) {
                 handleError('All fields are required!');
                 return false;
             }
 
-            sendPost(domoForm.getAttribute('action'), { name, age, _csrf });
+            sendPost(domoForm.getAttribute('action'), { name, age, characteristic, _csrf });
             return false;
         });
     }
