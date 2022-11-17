@@ -1,3 +1,8 @@
+const models = require('../models');
+const DomoModel = require('../models/Domo');
+
+const { Domo } = models;
+
 /* Takes in an error message. Sets the error message up in html, and
    displays it to the user. Will be hidden by other events that could
    end in an error.
@@ -20,6 +25,8 @@ const sendPost = async(url, data, handler) => {
     });
 
     const result = await response.json();
+    console.log("result:");
+    console.log(result);
     document.getElementById('domoMessage').classList.add('hidden');
 
     if (result.redirect) {
@@ -40,8 +47,14 @@ const hideError = () => {
     document.getElementById('domoMessage').classList.add('hidden');
 };
 
+const deleteDomo = (domoId) => {
+    console.log("in deleteDomo");
+    DomoModel.deleteById(domoId);
+};
+
 module.exports = {
     handleError,
     sendPost,
     hideError,
+    deleteDomo,
 }

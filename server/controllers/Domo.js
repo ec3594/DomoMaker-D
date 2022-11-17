@@ -4,49 +4,56 @@ const DomoModel = require('../models/Domo');
 const { Domo } = models;
 
 const makerPage = (req, res) => {
-  res.render('app');
+    res.render('app');
 };
 
-const makeDomo = async (req, res) => {
-  if (!req.body.name || !req.body.age || !req.body.characteristic) {
-    return res.status(400).json({ error: 'Name, age, and characteristic are required!' });
-  }
-
-  const domoData = {
-    name: req.body.name,
-    age: req.body.age,
-    characteristic: req.body.characteristic,
-    owner: req.session.account._id,
-  };
-
-  try {
-    const newDomo = new Domo(domoData);
-    await newDomo.save();
-    return res.status(201).json({
-      name: newDomo.name,
-      age: newDomo.age,
-      characteristic: newDomo.characteristic,
-    });
-  } catch (err) {
-    console.log(err);
-    if (err.code === 11000) {
-      return res.status(400).json({ error: 'Domo already exists!' });
+const makeDomo = async(req, res) => {
+    if (!req.body.name || !req.body.age || !req.body.characteristic) {
+        return res.status(400).json({ error: 'Name, age, and characteristic are required!' });
     }
-    return res.status(400).json({ error: 'An error occured' });
-  }
+
+    const domoData = {
+        name: req.body.name,
+        age: req.body.age,
+        characteristic: req.body.characteristic,
+        owner: req.session.account._id,
+    };
+
+    try {
+        const newDomo = new Domo(domoData);
+        await newDomo.save();
+        return res.status(201).json({
+            name: newDomo.name,
+            age: newDomo.age,
+            characteristic: newDomo.characteristic,
+        });
+    } catch (err) {
+        console.log(err);
+        if (err.code === 11000) {
+            return res.status(400).json({ error: 'Domo already exists!' });
+        }
+        return res.status(400).json({ error: 'An error occured' });
+    }
 };
 
 const getDomos = (req, res) => DomoModel.findByOwner(req.session.account._id, (err, docs) => {
-  if (err) {
-    console.log(err);
-    return res.status(400).json({ error: 'An error occurred!' });
-  }
+    if (err) {
+        console.log(err);
+        return res.status(400).json({ error: 'An error occurred!' });
+    }
 
-  return res.json({ domos: docs });
+    return res.json({ domos: docs });
 });
 
+const deleteDomo = (req, res) => {
+    // console.log("in deleteDomo");
+    // DomoModel.deleteById(req.body.domoId);
+    // return res.status(204).json({});
+};
+
 module.exports = {
-  makerPage,
-  makeDomo,
-  getDomos,
+    makerPage,
+    makeDomo,
+    getDomos,
+    deleteDomo,
 };

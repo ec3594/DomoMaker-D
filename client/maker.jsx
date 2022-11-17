@@ -60,10 +60,11 @@ const DomoList = (props) => {
                 <h3 className="domoName"> Name: {domo.name} </h3>
                 <h3 className="domoAge"> Age: {domo.age} </h3>
                 <h3 className="domoChar"> Characteristic: {domo.characteristic} </h3>
-                <button type="button" onClick={(e)=>{
-                    console.log("button clicked!");
-                    console.log(e.target.parentElement);
-                    e.target.parentElement.innerHTML="";
+                <button type="button" onClick={(e) => {
+                    e.target.parentElement.remove();
+                    let domoId = domo._id;
+                    console.log("domoId: " + domoId);
+                    helper.deleteDomo(domoId);
                 }}>Delete</button>
             </div>
         );
