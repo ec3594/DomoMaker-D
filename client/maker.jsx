@@ -64,7 +64,7 @@ const DomoList = (props) => {
                     e.target.parentElement.remove();
                     let domoId = domo._id;
                     console.log("domoId: " + domoId);
-                    helper.deleteDomo(domoId);
+                    //helper.deleteDomo(domoId);
                 }}>Delete</button>
             </div>
         );

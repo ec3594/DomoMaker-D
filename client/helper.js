@@ -48,7 +48,7 @@ const hideError = () => {
 };
 
 const deleteDomo = (domoId) => {
-    console.log("in deleteDomo");
+    console.log("in deleteDomo 0");
     DomoModel.deleteById(domoId);
 };
 
