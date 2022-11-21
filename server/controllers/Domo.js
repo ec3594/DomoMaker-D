@@ -9,7 +9,7 @@ const makerPage = (req, res) => {
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.characteristic) {
-    return res.status(400).json({ error: 'Name, age, and characteristic are required!' });
+    return res.status(400).json({ error: 'All fields are required!' });
   }
 
   const domoData = {
