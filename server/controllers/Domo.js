@@ -45,15 +45,8 @@ const getDomos = (req, res) => DomoModel.findByOwner(req.session.account._id, (e
   return res.json({ domos: docs });
 });
 
-const deleteDomo = (domoId) => {
-  console.log(`in deleteDomo 1 ${domoId}`);
-  // DomoModel.deleteById(req.body.domoId);
-  // return res.status(204).json({});
-};
-
 module.exports = {
   makerPage,
   makeDomo,
   getDomos,
-  deleteDomo,
 };

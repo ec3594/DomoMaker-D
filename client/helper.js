@@ -1,7 +1,7 @@
 const models = require('../models');
 const DomoModel = require('../models/Domo');
 
-const { Domo } = models;
+const Domo = models.Domo;
 
 /* Takes in an error message. Sets the error message up in html, and
    displays it to the user. Will be hidden by other events that could
@@ -47,14 +47,8 @@ const hideError = () => {
     document.getElementById('domoMessage').classList.add('hidden');
 };
 
-const deleteDomo = (domoId) => {
-    console.log("in deleteDomo 0");
-    //DomoModel.deleteById(domoId);
-};
-
 module.exports = {
     handleError,
     sendPost,
     hideError,
-    deleteDomo,
 }
